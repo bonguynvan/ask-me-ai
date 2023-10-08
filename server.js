@@ -1,17 +1,18 @@
-const envConfig = require('dotenv').config()
-const express = require('express')
-const cors = require('cors')
-const bodyParser = require('body-parser')
+import dotenv from 'dotenv'
+import express from 'express'
+import cors from 'cors'
+import bodyParser from 'body-parser'
 
-const multer = require('multer')
+dotenv.config()
+// const multer = require('multer')
 const port = 3000
 const app = express()
 app.use(cors)
 app.use(bodyParser.json())
 
-const {Configuration, OpenAIApi} = require('open-ai')
+const {Configuration, OpenAIApi} = import.meta.url('open-ai')
 const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY
+    apiKey: import.meta.env.OPENAI_API_KEY
 })
 const openai = new OpenAIApi(configuration)
 
